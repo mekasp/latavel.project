@@ -1,17 +1,17 @@
 @extends('layout')
 
-@section('title', 'Posts')
+@section('title', 'Category posts')
 
 @section('content')
     <h1>{{ $title }}</h1>
-    <table class="table table-striped table-sm">
+    <table class="table">
         <thead>
         <tr>
-            <th scope="col">ID</th>
+            <th  scope="col">ID</th>
             <th scope="col">Title</th>
             <th scope="col">User</th>
             <th scope="col">Category</th>
-            <th scope="col">Tags</th>
+            <th scope="col">Tag</th>
             <th scope="col">Body</th>
             <th scope="col">Created at</th>
             <th scope="col">Updated at</th>

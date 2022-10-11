@@ -44,5 +44,19 @@ class UserController
             'posts' => $posts
         ]);
     }
+
+    public function categoriesPostsTags( $authorId,  $categoryId, $tagId)
+    {
+        $posts = Post::whereHas('user', function (Builder $query) use ($authorId) {
+            $query->where('id', $authorId);
+        })->where('category_id', $categoryId)->whereHas('tags', function (Builder $query) use ($tagId) {
+            $query->where('tag_id', $tagId);
+        })->get();
+
+        return view('/users/categoryPostsTags',[
+            'title' => 'Tag posts',
+            'posts' => $posts
+        ]);
+    }
 }
 

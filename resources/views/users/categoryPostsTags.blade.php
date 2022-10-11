@@ -1,10 +1,10 @@
 @extends('layout')
 
-@section('title', 'Posts')
+@section('title', 'Tag posts')
 
 @section('content')
     <h1>{{ $title }}</h1>
-    <table class="table table-striped table-sm">
+    <table class="table">
         <thead>
         <tr>
             <th scope="col">ID</th>
