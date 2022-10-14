@@ -2,6 +2,29 @@
 
 @section('title', 'User posts')
 
+@section('breadcrumbs')
+    @include('partial.breadcrumbs', [
+        'links' => [
+            [
+                'link' => '/',
+                'name' => 'Posts'
+            ],
+            [
+                'link' => '/user',
+                'name' => 'Users'
+            ],
+            [
+                'link' => '/tag',
+                'name' => 'Tags'
+            ],
+            [
+                'link' => '/category',
+                'name' => 'Categories'
+            ],
+        ]
+    ])
+@endsection
+
 @section('content')
     <h1>{{ $title }}</h1>
     <table class="table">
@@ -30,7 +53,7 @@
                 <td>{{ $post['created_at'] }}</td>
                 <td>{{ $post['updated_at'] }}</td>
                 <td>
-                    <a href="{{ $post->category->id }}/tag/{{ $post->tags->pluck('id')->first() }}">
+                    <a href="{{ route('user.category.tag.posts', ['user_id' => $post->user->id, 'category_id' => $post->category->id, 'tag_id' => $post->tags->pluck('id')->first()]) }}">
                         tags
                     </a>
                 </td>

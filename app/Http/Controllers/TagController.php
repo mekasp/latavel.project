@@ -17,8 +17,9 @@ class TagController
         ]);
     }
 
-    public function posts(Tag $tag)
+    public function posts($id)
     {
+        $tag = Tag::find($id);
         $posts = $tag->posts()->get();
 
         return view('tags/posts', [

@@ -16,6 +16,8 @@ class UserController
     public function index()
     {
         $users = User::all();
+//        $users = User::paginate(15);
+
 
         return view('/users/index',[
             'title' => 'Users',
@@ -23,8 +25,9 @@ class UserController
         ]);
     }
 
-    public function posts(User $user)
+    public function posts($id)
     {
+        $user = User::find($id);
         $posts = $user->posts()->get();
 
         return view('/users/posts',[

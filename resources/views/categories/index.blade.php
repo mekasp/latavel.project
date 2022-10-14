@@ -2,6 +2,25 @@
 
 @section('title', 'Categories')
 
+@section('breadcrumbs')
+    @include('partial.breadcrumbs', [
+        'links' => [
+            [
+                'link' => '/',
+                'name' => 'Posts'
+            ],
+            [
+                'link' => '/user',
+                'name' => 'Users'
+            ],
+            [
+                'link' => '/tag',
+                'name' => 'Tags'
+            ],
+        ]
+    ])
+@endsection
+
 @section('content')
     <h1>{{ $title }}</h1>
     <table class="table">

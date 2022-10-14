@@ -6,16 +6,16 @@
     @include('partial.breadcrumbs', [
         'links' => [
             [
-                'link' => '/user',
-                'name' => 'Users'
+                'link' => '/admin',
+                'name' => 'Home'
             ],
             [
-                'link' => '/tag',
+                'link' => '/admin/tag',
                 'name' => 'Tags'
             ],
             [
-                'link' => '/category',
-                'name' => 'Categories'
+                'link' => '/admin/category',
+                'name' => 'Category'
             ],
         ]
     ])
@@ -23,6 +23,7 @@
 
 @section('content')
     <h1>{{ $title }}</h1>
+    <a href="{{ route('admin.post.create') }}" class="btn btn-primary">Create</a>
     <table class="table table-striped table-sm">
         <thead>
         <tr>
@@ -34,6 +35,7 @@
             <th scope="col">Body</th>
             <th scope="col">Created at</th>
             <th scope="col">Updated at</th>
+            <th scope="col">Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -47,13 +49,15 @@
                 <td>{{ $post['body'] }}</td>
                 <td>{{ $post['created_at'] }}</td>
                 <td>{{ $post['updated_at'] }}</td>
+                <td><a class="btn btn-warning" href="{{ route('admin.post.edit', $post['id']) }}">Update</a></td>
+                <td><a class="btn btn-danger" href="{{ route('admin.post.destroy', $post['id']) }}">Delete</a></td>
             </tr>
         @empty
             <p>Empty</p>
         @endforelse
         </tbody>
-        <nav aria-label="Page navigation example">
-            <ul class="pagination">
+        <nav>
+            <ul class="pagination mt-3">
                 @if ($posts->currentPage() !== 1)
                     <li class="page-item"><a class="page-link" href="{{ $posts->previousPageUrl() }}">Previous</a></li>
                 @endif

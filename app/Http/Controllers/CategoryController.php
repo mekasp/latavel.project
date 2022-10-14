@@ -18,8 +18,9 @@ class CategoryController
         ]);
     }
 
-    public function posts(Category $category)
+    public function posts($id)
     {
+        $category = Category::find($id);
         $posts = $category->posts()->get();
 
         return view('/categories/posts',[

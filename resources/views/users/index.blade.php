@@ -2,6 +2,25 @@
 
 @section('title', 'Users')
 
+@section('breadcrumbs')
+    @include('partial.breadcrumbs', [
+        'links' => [
+            [
+                'link' => '/',
+                'name' => 'Posts'
+            ],
+            [
+                'link' => '/tag',
+                'name' => 'Tags'
+            ],
+            [
+                'link' => '/category',
+                'name' => 'Categories'
+            ],
+        ]
+    ])
+@endsection
+
 @section('content')
     <h1>{{ $title }}</h1>
     <table class="table">
@@ -26,7 +45,7 @@
                 <td>{{ $user['created_at'] }}</td>
                 <td>{{ $user['updated_at'] }}</td>
                 <td>
-                    <a href="user/{{ $user->id }}">
+                    <a href="{{ route('user.posts', ['id' => $user->id]) }}">
                         Posts
                     </a>
                 </td>
