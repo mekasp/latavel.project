@@ -7,13 +7,13 @@ use App\Models\Post;
 use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController
 {
     private $validationRules = [
         'title' => ['required', 'min:3'],
         'body' => ['required', 'min:3'],
-        'user_id' => ['required', 'exists:users,id'],
         'category_id' => ['required', 'exists:categories,id'],
         'tag_id' => ['required', 'exists:tags,id']
     ];
@@ -48,7 +48,7 @@ class PostController
         $request->validate($this->validationRules);
 
         $post = Post::create([
-            'user_id' => $request->input('user_id'),
+            'user_id' => Auth::id(),
             'category_id' => $request->input('category_id'),
             'title' => $request->input('title'),
             'body' => $request->input('body')

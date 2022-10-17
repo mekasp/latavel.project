@@ -52,21 +52,6 @@
             @endif
         </div>
         <div class="mb-3">
-            <label for="user_id" class="form-label">User</label>
-            <select class="form-select" name="user_id" id="user_id">
-                @foreach($users as $user)
-                    <option value="{{ $user['id'] }}" @if( $user['id'] == old('user_id')) selected @endif>{{ $user['name'] }}</option>
-                @endforeach
-            </select>
-            @if($errors->has('user_id'))
-                @foreach($errors->get('user_id') as $error)
-                    <div class="alert alert-danger" role="alert">
-                        {{ $error }}
-                    </div>
-                @endforeach
-            @endif
-        </div>
-        <div class="mb-3">
             <label for="category_id" class="form-label">Category</label>
             <select class="form-select" name="category_id" id="category_id">
                 @foreach($categories as $category)
