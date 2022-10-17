@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Tag;
 use Illuminate\Http\Request;
 
-class AdminTagController
+class TagController
 {
     private $validationRules = [
         'title' => ['required', 'min:3'],

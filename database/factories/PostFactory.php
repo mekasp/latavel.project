@@ -24,7 +24,7 @@ class PostFactory extends Factory
             'user_id' => 1,
             'category_id' => 1,
             'title' => Str::random(10),
-            'body' => Str::random(100),
+            'body' => $this->faker->text(100),
         ];
     }
 }

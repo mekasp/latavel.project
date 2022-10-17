@@ -23,4 +23,5 @@
 
 @section('content')
         <h1>{{ $title }}</h1>
+        <a href="{{ route('auth.logout') }}" class="btn btn-primary" >Logout</a>
 @endsection

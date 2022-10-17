@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
-class AdminCategoryController
+class CategoryController
 {
     private $validationRules = [
         'title' => ['required', 'min:3'],

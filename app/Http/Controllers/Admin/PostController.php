@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Category;
 use App\Models\Post;
@@ -8,7 +8,7 @@ use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class AdminPostController
+class PostController
 {
     private $validationRules = [
         'title' => ['required', 'min:3'],

@@ -22,7 +22,7 @@ class CategoryFactory extends Factory
     {
         return [
             'title' => Str::random(10),
-            'slug' => Str::random(10),
+            'slug' => $this->faker->slug(),
         ];
     }
 }
