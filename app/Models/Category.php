@@ -19,5 +19,10 @@ class Category extends Model
     {
         return $this->hasMany(Post::class);
     }
+
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
 }
 

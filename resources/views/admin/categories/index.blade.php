@@ -43,6 +43,7 @@
                 <td>{{ $category['slug'] }}</td>
                 <td>{{ $category['created_at'] }}</td>
                 <td>{{ $category['updated_at'] }}</td>
+                <td><a class="btn btn-danger" href="{{ route('admin.category.show', $category['id']) }}">Show</a></td>
                 <td><a class="btn btn-warning" href="{{ route('admin.category.edit', $category['id']) }}">Update</a></td>
                 <td><a class="btn btn-danger" href="{{ route('admin.category.destroy', $category['id']) }}">Delete</a></td>
             </tr>

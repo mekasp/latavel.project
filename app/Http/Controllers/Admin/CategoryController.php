@@ -23,6 +23,15 @@ class CategoryController
         ]);
     }
 
+    public function show($id)
+    {
+        $category = Category::find($id);
+        return view('admin/categories/show', [
+            'title' => 'Category',
+            'category' => $category
+        ]);
+    }
+
     public function create()
     {
         $category = new Category();

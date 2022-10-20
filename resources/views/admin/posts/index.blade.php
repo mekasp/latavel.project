@@ -23,7 +23,9 @@
 
 @section('content')
     <h1>{{ $title }}</h1>
-    <a href="{{ route('admin.post.create') }}" class="btn btn-primary">Create</a>
+    @can('create', \App\Models\Post::class)
+        <a href="{{ route('admin.post.create') }}" class="btn btn-primary">Create</a>
+    @endcan
     <table class="table table-striped table-sm">
         <thead>
         <tr>
@@ -49,8 +51,21 @@
                 <td>{{ $post['body'] }}</td>
                 <td>{{ $post['created_at'] }}</td>
                 <td>{{ $post['updated_at'] }}</td>
-                <td><a class="btn btn-warning" href="{{ route('admin.post.edit', $post['id']) }}">Update</a></td>
-                <td><a class="btn btn-danger" href="{{ route('admin.post.destroy', $post['id']) }}">Delete</a></td>
+                <td>
+                    @can('view', $post)
+                        <a class="btn btn-danger" href="{{ route('admin.post.show', $post['id']) }}">Show</a>
+                    @endcan
+                </td>
+                <td>
+                    @can('update', $post)
+                        <a class="btn btn-warning" href="{{ route('admin.post.edit', $post['id']) }}">Update</a>
+                    @endcan
+                </td>
+                <td>
+                    @can('delete', $post)
+                    <a class="btn btn-danger" href="{{ route('admin.post.destroy', $post['id']) }}">Delete</a>
+                    @endcan
+                </td>
             </tr>
         @empty
             <p>Empty</p>

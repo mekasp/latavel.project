@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
@@ -9,7 +10,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class PostController
+class PostController extends Controller
 {
     private $validationRules = [
         'title' => ['required', 'min:3'],
@@ -20,16 +21,25 @@ class PostController
 
     public function index()
     {
-        $posts = Post::paginate(5);
-
+        $posts = Post::with('user', 'category', 'tags')->paginate(5);
         return view('admin/posts/index', [
             'title' => 'Posts',
             'posts' => $posts
         ]);
     }
 
+    public function show($id)
+    {
+        $post = Post::find($id);
+        return view('admin/posts/show', [
+            'title' => 'Post',
+            'post' => $post
+        ]);
+    }
+
     public function create()
     {
+//        $this->authorize('create', Post::class);
         $post = new Post();
         $users = User::all();
         $categories = Category::all();
@@ -61,6 +71,7 @@ class PostController
     public function edit($id)
     {
         $post = Post::find($id);
+//        $this->authorize('update', $post);
         $users = User::all();
         $categories = Category::all();
         $tags = Tag::all();
@@ -93,6 +104,7 @@ class PostController
     public function destroy($id)
     {
         $post = Post::find($id);
+//        $this->authorize('delete', $post);
         $post->tags()->detach();
         $post->delete();
 

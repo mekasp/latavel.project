@@ -10,7 +10,7 @@ use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\TagController as AdminTagController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\AdminPanelController;
-
+use \App\Http\Controllers\Admin\CommentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -47,7 +47,10 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/admin', [AdminPanelController::class, 'index'])->name('admin.panel');
 
+    Route::post('/admin/comment/{id}/add', [CommentController::class, 'store'])->name('add.comment');
+
     Route::get('/admin/post', [AdminPostController::class, 'index'])->name('admin.posts');
+    Route::get('/admin/post/{id}/show', [AdminPostController::class, 'show'])->name('admin.post.show');
     Route::get('/admin/post/create', [AdminPostController::class, 'create'])->name('admin.post.create');
     Route::post('/admin/post/store', [AdminPostController::class, 'store'])->name('admin.post.store');
     Route::get('/admin/post/{id}/edit', [AdminPostController::class, 'edit'])->name('admin.post.edit');
@@ -55,6 +58,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/post/{id}/delete', [AdminPostController::class, 'destroy'])->name('admin.post.destroy');
 
     Route::get('/admin/category', [AdminCategoryController::class, 'index'])->name('admin.categories');
+    Route::get('/admin/category/{id}/show', [AdminCategoryController::class, 'show'])->name('admin.category.show');
     Route::get('/admin/category/create', [AdminCategoryController::class, 'create'])->name('admin.category.create');
     Route::post('/admin/category/store', [AdminCategoryController::class, 'store'])->name('admin.category.store');
     Route::get('/admin/category/{id}/edit', [AdminCategoryController::class, 'edit'])->name('admin.category.edit');

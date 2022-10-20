@@ -11,9 +11,7 @@ class PostController
 {
     public function index()
     {
-//        $posts = Post::all();
-
-        $posts = Post::paginate(15);
+        $posts = Post::with('user', 'category', 'tags')->paginate(5);
 
         return view('/posts/index',[
             'title' => 'Posts',

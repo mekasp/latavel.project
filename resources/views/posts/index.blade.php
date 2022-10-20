@@ -22,6 +22,7 @@
 @endsection
 
 @section('content')
+    <a href="{{ route('admin.panel') }}" class="btn btn-primary">Admin panel</a>
     <h1>{{ $title }}</h1>
     <table class="table table-striped table-sm">
         <thead>
