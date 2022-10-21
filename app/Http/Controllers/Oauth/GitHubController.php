@@ -41,6 +41,7 @@ class GitHubController
         if (!$this->createUser($user->json())) {
             return redirect()->route('auth.login');
         }
+
         return redirect()->route('admin.panel');
     }
 
@@ -51,6 +52,7 @@ class GitHubController
         }
 
         $user = User::where('email', $userInfo['email'])->first();
+
         if (empty($user)) {
             $user = User::create([
                 'name' => $userInfo['name'],
@@ -59,7 +61,10 @@ class GitHubController
                 'role_name' => 'customer'
             ]);
         }
+
         Auth::login($user);
+
         return true;
     }
 }
+
