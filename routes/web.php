@@ -9,8 +9,10 @@ use App\Http\Controllers\Admin\PostController as AdminPostController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\TagController as AdminTagController;
 use App\Http\Controllers\Admin\AuthController;
-use App\Http\Controllers\Admin\AdminPanelController;
+use App\Http\Controllers\Admin\PanelController;
 use \App\Http\Controllers\Admin\CommentController;
+use \App\Http\Controllers\Oauth\GitHubController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,6 +25,7 @@ use \App\Http\Controllers\Admin\CommentController;
 */
 
 Route::get('/', [PostController::class, 'index'])->name('main');
+Route::get('/oauth/github/callback', GitHubController::class)->name('oauth.github.callback');
 
 Route::get('/user', [UserController::class, 'index'])->name('user');
 Route::get('/user/{id}', [UserController::class, 'posts'])->name('user.posts');
@@ -45,7 +48,7 @@ Route::middleware(['guest'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/auth/logout', [AuthController::class, 'logout'])->name('auth.logout');
 
-    Route::get('/admin', [AdminPanelController::class, 'index'])->name('admin.panel');
+    Route::get('/admin', [PanelController::class, 'index'])->name('admin.panel');
 
     Route::post('/admin/comment/{id}/add', [CommentController::class, 'store'])->name('add.comment');
 

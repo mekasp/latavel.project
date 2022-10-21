@@ -41,7 +41,7 @@ class PostPolisy
      */
     public function create(User $user)
     {
-//        return in_array($user->role_name, ['admin','manager']);
+        return in_array($user->role_name, ['admin','manager']);
     }
 
     /**
@@ -53,7 +53,7 @@ class PostPolisy
      */
     public function update(User $user, Post $post)
     {
-//        return $user->id === $post->user_id && $user->role_name === 'manager' || $user->role_name === 'admin';
+        return $user->id === $post->user_id && $user->role_name === 'manager' || $user->role_name === 'admin';
     }
 
     /**
@@ -65,7 +65,7 @@ class PostPolisy
      */
     public function delete(User $user, Post $post)
     {
-//        return $user->role_name === 'admin';
+        return $user->role_name === 'admin';
     }
 
     /**

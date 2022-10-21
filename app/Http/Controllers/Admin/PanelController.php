@@ -4,7 +4,7 @@
 namespace App\Http\Controllers\Admin;
 
 
-class AdminPanelController
+class PanelController
 {
     public function index()
     {

@@ -12,8 +12,17 @@ class AuthController
 {
     public function login()
     {
+        $url = 'https://github.com/login/oauth/authorize';
+        $parameters = [
+            'client_id' => getenv('OAUTH_GITHUB_CLIENT_ID'),
+            'redirect_uri' => getenv('OAUTH_GITHUB_REDIRECT_URI'),
+            'scope' => 'user'
+        ];
+        $url .= '?' . http_build_query($parameters);
+
         return view('auth/form', [
-            'title' => 'Login'
+            'title' => 'Login',
+            'url' => $url
         ]);
     }
 
@@ -32,7 +41,7 @@ class AuthController
                 $user->save();
             }
 
-            return redirect()->route('admin.panel');
+            return redirect()->route('auth.login');
         }
 
         return back()->withErrors([
