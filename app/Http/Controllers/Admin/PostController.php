@@ -39,7 +39,7 @@ class PostController extends Controller
 
     public function create()
     {
-//        $this->authorize('create', Post::class);
+        $this->authorize('create', Post::class);
         $post = new Post();
         $users = User::all();
         $categories = Category::all();
@@ -71,7 +71,7 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::find($id);
-//        $this->authorize('update', $post);
+        $this->authorize('update', $post);
         $users = User::all();
         $categories = Category::all();
         $tags = Tag::all();
@@ -104,7 +104,7 @@ class PostController extends Controller
     public function destroy($id)
     {
         $post = Post::find($id);
-//        $this->authorize('delete', $post);
+        $this->authorize('delete', $post);
         $post->tags()->detach();
         $post->delete();
 
