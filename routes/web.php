@@ -38,6 +38,7 @@ Route::get('/tag', [TagController::class, 'index'])->name('tag');
 Route::get('/tag/{id}', [TagController::class, 'posts'])->name('tag.posts');
 
 Route::get('/category', [CategoryController::class, 'index'])->name('category');
+Route::get('/category/{id}/show', [CategoryController::class, 'show'])->name('category.show');
 Route::get('/category/{id}', [CategoryController::class, 'posts'])->name('category.posts');
 
 Route::middleware(['guest'])->group(function () {
