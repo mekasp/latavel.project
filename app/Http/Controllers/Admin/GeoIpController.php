@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Visit;
 use App\Services\Geo\GeoServiceInterface;
-use App\Services\UserAgent\UserAgentService;
+use App\Services\UserAgent\UserAgentInterface;
 
 class GeoIpController
 {
-    public function index(GeoServiceInterface $reader,UserAgentService $userAgent)
+    public function index(GeoServiceInterface $reader,UserAgentInterface $userAgent)
     {
         $ip = request()->ip();
         if ($ip == '127.0.0.1') {
