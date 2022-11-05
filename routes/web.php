@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\PanelController;
 use \App\Http\Controllers\Admin\CommentController;
 use \App\Http\Controllers\Oauth\GitHubController;
+use App\Http\Controllers\Admin\GeoIpController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,7 @@ use \App\Http\Controllers\Oauth\GitHubController;
 
 Route::get('/', [PostController::class, 'index'])->name('main');
 Route::get('/oauth/github/callback', GitHubController::class)->name('oauth.github.callback');
+Route::get('/geo', [GeoIpController::class, 'index'])->name('geo');
 
 Route::get('/user', [UserController::class, 'index'])->name('user');
 Route::get('/user/{id}', [UserController::class, 'posts'])->name('user.posts');
