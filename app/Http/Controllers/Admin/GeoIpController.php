@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Visit;
 use App\Services\Geo\GeoServiceInterface;
-use App\Services\UserAgent\UserAgentInterface;
+use Mekas\UserAgent\Int\Test\UserAgentInterface;
 
 class GeoIpController
 {
@@ -15,7 +15,7 @@ class GeoIpController
             $ip = request()->server->get('HTTP_X_FORWARDED_FOR');
         }
 
-        $ip = '93.76.188.248';
+        $ip = '98.76.188.248';
 
         $reader->parse($ip);
         $isoCode = $reader->getIsoCode();

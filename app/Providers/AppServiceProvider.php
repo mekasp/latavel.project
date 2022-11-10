@@ -5,8 +5,8 @@ namespace App\Providers;
 use App\Services\Geo\GeoServiceInterface;
 use App\Services\Geo\IpApiGeoService;
 use App\Services\Geo\MaxmindService;
-use App\Services\UserAgent\UserAgentInterface;
-use App\Services\UserAgent\UserAgentService;
+use Mekas\UserAgent\Int\Test\UserAgentInterface;
+use Mekas\UserAgent\Service\Test\UserAgentService;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
