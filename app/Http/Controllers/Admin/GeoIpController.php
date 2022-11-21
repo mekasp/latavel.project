@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Jobs\UserAgent;
+use App\Mail\WelcomeMail;
 use App\Models\Visit;
 use App\Services\Geo\GeoServiceInterface;
+use Illuminate\Support\Facades\Mail;
 use Mekas\UserAgent\Int\Test\UserAgentInterface;
 
 class GeoIpController
@@ -15,22 +18,8 @@ class GeoIpController
             $ip = request()->server->get('HTTP_X_FORWARDED_FOR');
         }
 
-        $ip = '98.76.188.248';
-
-        $reader->parse($ip);
-        $isoCode = $reader->getIsoCode();
-        $country = $reader->getCountry();
-        $browser = $userAgent->getBrowser();
-        $system = $userAgent->getSystem();
-
-        if (!empty($isoCode) && !empty($country)) {
-            Visit::create([
-                'ip' => $ip,
-                'country_code' => $country,
-                'continent_code' => $isoCode,
-                'browser' => $browser,
-                'system' => $system
-            ]);
+        for ($index = 0; $index < 11; $index++) {
+            UserAgent::dispatch($ip,$reader,$userAgent)->onQueue('parsing');
         }
     }
 }
