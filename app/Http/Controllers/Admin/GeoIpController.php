@@ -13,14 +13,16 @@ class GeoIpController
 {
     public function index(GeoServiceInterface $reader,UserAgentInterface $userAgent)
     {
+
         $ip = request()->ip();
+        $ip = '93.76.188.248';
         if ($ip == '127.0.0.1') {
             $ip = request()->server->get('HTTP_X_FORWARDED_FOR');
         }
 
-        for ($index = 0; $index < 11; $index++) {
-            UserAgent::dispatch($ip,$reader,$userAgent)->onQueue('parsing');
-        }
+
+        UserAgent::dispatch($ip,$reader,$userAgent)->onQueue('parsing');
+
     }
 }
 

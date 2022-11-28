@@ -3,10 +3,13 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Jobs\UserAgent;
 use App\Models\Tag;
+use donatj\UserAgent\UserAgentInterface;
 use Illuminate\Database\Seeder;
 use Illuminate\Queue\Jobs\Job;
 use Illuminate\Support\Facades\DB;
+use MaxMind\Db\Reader;
 
 class DatabaseSeeder extends Seeder
 {
