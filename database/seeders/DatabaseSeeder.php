@@ -5,7 +5,6 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Jobs\UserAgent;
 use App\Models\Tag;
-use donatj\UserAgent\UserAgentInterface;
 use Illuminate\Database\Seeder;
 use Illuminate\Queue\Jobs\Job;
 use Illuminate\Support\Facades\DB;
@@ -32,7 +31,9 @@ class DatabaseSeeder extends Seeder
 //            $post->tags()->attach($tags->random(rand(5,10))->pluck('id'));
 //            $post->save();
 //        });
-
+        for ($index = 0; $index < 10; $index++) {
+            UserAgent::dispatch(fake()->ipv4,fake()->userAgent())->onQueue('parsing');
+        }
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',

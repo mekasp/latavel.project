@@ -18,7 +18,6 @@ class UserAgent implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     public $ip;
-    public $reader;
     public $userAgent;
 
 
@@ -27,10 +26,9 @@ class UserAgent implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(string $ip,$reader,$userAgent)
+    public function __construct(string $ip,$userAgent)
     {
         $this->ip = $ip;
-        $this->reader = $reader;
         $this->userAgent = $userAgent;
     }
 
@@ -39,13 +37,14 @@ class UserAgent implements ShouldQueue
      *
      * @return void
      */
-    public function handle()
+    public function handle(GeoServiceInterface $reader, UserAgentInterface $userAgentInt)
     {
-        $this->reader->parse($this->ip);
-        $isoCode = $this->reader->getIsoCode();
-        $country = $this->reader->getCountry();
-        $browser = $this->userAgent->getBrowser();
-        $system = $this->userAgent->getSystem();
+        $reader->parse($this->ip);
+        $isoCode = $reader->getIsoCode();
+        $country = $reader->getCountry();
+        $userAgentInt->parse($this->userAgent);
+        $browser = $userAgentInt->getBrowser();
+        $system = $userAgentInt->getSystem();
 
         if (!empty($isoCode) && !empty($country)) {
             Visit::create([
