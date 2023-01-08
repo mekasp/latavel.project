@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\PanelController;
 use \App\Http\Controllers\Admin\CommentController;
 use \App\Http\Controllers\Oauth\GitHubController;
 use App\Http\Controllers\Admin\GeoIpController;
+use App\Http\Controllers\CloudderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,8 +26,11 @@ use App\Http\Controllers\Admin\GeoIpController;
 |
 */
 
+Route::get('/cloudder', [CloudderController::class, 'getFile']);
+Route::post('/cloudder/upload-file', [CloudderController::class, 'uploadFile'])->name('upload-file');
+
 Route::get('/', [PostController::class, 'index'])->name('main');
-Route::get('/oauth/github/callback', GitHubController::class)->name('oauth.github.callback');
+//Route::get('/oauth/github/callback', GitHubController::class)->name('oauth.github.callback');
 Route::get('/geo', [GeoIpController::class, 'index'])->name('geo');
 
 Route::get('/user', [UserController::class, 'index'])->name('user');

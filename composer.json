@@ -6,15 +6,16 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
+        "cloudinary-labs/cloudinary-laravel": "^2.0",
+        "cloudinary/cloudinary_php": "^2",
+        "codebar-ag/laravel-flysystem-cloudinary": "^2.0",
         "donatj/phpuseragentparser": "^1.7",
         "geoip2/geoip2": "~2.0",
         "guzzlehttp/guzzle": "^7.5",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/socialite": "^5.5",
-        "laravel/tinker": "^2.7",
-        "mekas/package-user-agent-int-test": "^1.0.0",
-        "mekas/package-user-agent-service-test": "^1.0.0"
+        "laravel/tinker": "^2.7"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.7",
@@ -26,12 +27,6 @@
         "phpunit/phpunit": "^9.5.10",
         "spatie/laravel-ignition": "^1.0"
     },
-    "repositories": [
-        {
-            "type": "github",
-            "url": "https://github.com/mekasp/mekasp-package-user-agent-service-test"
-        }
-    ],
     "autoload": {
         "psr-4": {
             "App\\": "app/",

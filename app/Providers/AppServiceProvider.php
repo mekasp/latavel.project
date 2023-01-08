@@ -5,6 +5,9 @@ namespace App\Providers;
 use App\Services\Geo\GeoServiceInterface;
 use App\Services\Geo\IpApiGeoService;
 use App\Services\Geo\MaxmindService;
+use Illuminate\Filesystem\FilesystemAdapter;
+use Illuminate\Support\Facades\Storage;
+use League\Flysystem\Filesystem;
 use Mekas\UserAgent\Int\Test\UserAgentInterface;
 use Mekas\UserAgent\Service\Test\UserAgentService;
 use Illuminate\Support\ServiceProvider;
@@ -20,12 +23,12 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->singleton(GeoServiceInterface::class, function () {
 //            return new MaxmindService();
-            return new IpApiGeoService();
+//            return new IpApiGeoService();
         });
 
-        $this->app->singleton(UserAgentInterface::class, function () {
-            return new UserAgentService();
-        });
+//        $this->app->singleton(UserAgentInterface::class, function () {
+//            return new UserAgentService();
+//        });
     }
 
     /**
@@ -35,7 +38,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+
     }
 }
 

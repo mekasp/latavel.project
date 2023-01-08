@@ -6,6 +6,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Storage;
+
 
 class PostController
 {
